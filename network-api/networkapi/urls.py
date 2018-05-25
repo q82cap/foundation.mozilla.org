@@ -13,11 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 '''
-from django.conf.urls import url, include
-from django.contrib import admin
 from django.conf import settings
+from django.conf.urls import url, include
+from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
+from django.contrib import admin
 from django.views.generic.base import RedirectView
+
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.core import urls as wagtail_urls
@@ -64,7 +66,7 @@ urlpatterns = list(filter(None, [
 
     url(r'^cms/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
-    url(r'', include(wagtail_urls)),
+    #url(r'', include(wagtail_urls)),
 
     # Mezzanine left-overs
 
@@ -76,6 +78,11 @@ urlpatterns = list(filter(None, [
         name='home'
     ),
 ]))
+
+urlpatterns += i18n_patterns(
+    # These URLs will have /<language_code>/ appended to the beginning
+    url(r'', include(wagtail_urls)),
+)
 
 
 if settings.USE_S3 is not True:

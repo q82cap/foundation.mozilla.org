@@ -1,28 +1,35 @@
-#tab-content ul.objects li.object.l10n-hidden {
+ul.objects li.object.l10n-hidden {
     display: none;
 }
 
-#tab-content div.locale-picker {
+div.locale-picker {
   display: block;
   text-align: right;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+form > div.locale-picker {
+  /* because wagtail's header has a 2em margin-bottom: */;
+  margin-top: calc(1.5em - 2em);
   margin-bottom: 1em;
 }
 
-#tab-content div.locale-picker h2 {
+div.locale-picker h2 {
   display: inline;
 }
 
-#tab-content div.locale-picker ul.locales {
+div.locale-picker ul.locales {
   display: inline-block;
   margin: auto 1em;
 }
 
-#tab-content div.locale-picker ul.locales li.locale {
+div.locale-picker ul.locales li.locale {
   display: inline;
   margin: auto 0.5em;
 }
 
-#tab-content div.locale-picker ul.locales li.locale button.locale-toggle {
+div.locale-picker ul.locales li.locale button.locale-toggle {
   background-color: rgba(57, 151, 150, 0.3);
   text-transform: uppercase;
   outline: none;
@@ -35,6 +42,6 @@
   max-height: 2em;
 }
 
-#tab-content div.locale-picker ul.locales li.locale button.locale-toggle.active {
+div.locale-picker ul.locales li.locale button.locale-toggle.active {
   background-color: #43b1b0;
 }

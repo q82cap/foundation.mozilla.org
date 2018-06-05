@@ -2,7 +2,7 @@ from django.conf import settings
 from django.utils.html import format_html, format_html_join
 from wagtail.core import hooks
 
-@hooks.register('insert_editor_js')
+@hooks.register('insert_global_admin_js')
 def editor_js():
     js_files = [
         'js/editor-l10n.js',

@@ -9,6 +9,12 @@ from .models import (
     Styleguide,
     Homepage,
     RedirectingPage,
+
+    OpportunityPage,
+    CampaignPage,
+
+    CTA,
+    Petition,
 )
 
 from modeltranslation.translator import TranslationOptions
@@ -24,6 +30,29 @@ class ModularPageTR(TranslationOptions):
 @register(MiniSiteNameSpace)
 class MiniSiteNameSpaceTR(TranslationOptions):
     fields = ()
+
+@register(CampaignPage)
+class CampaignPageTR(TranslationOptions):
+    fields = (
+    )
+
+@register(OpportunityPage)
+class OpportunityPageTR(TranslationOptions):
+    fields = (
+    )
+
+@register(CTA)
+class CTATR(TranslationOptions):
+    fields = (
+        'name',
+        'header',
+        'description',
+    )
+
+@register(Petition)
+class PetitionTR(TranslationOptions):
+    fields = (
+    )
 
 @register(PrimaryPage)
 class PrimaryPageTR(TranslationOptions):

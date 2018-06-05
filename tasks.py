@@ -48,6 +48,19 @@ def makemigrations(ctx):
 
 
 @task
+def l10n_sync(ctx):
+    """Sync localizable fields in the database"""
+    manage(ctx, "sync_page_translation_fields")
+
+
+@task
+def l10n_update(ctx):
+    """Update localizable field data (copies from
+    original unlocalized to default localized field)"""
+    manage(ctx, "update_translation_fields")
+
+
+@task
 def test(ctx):
     """Run tests"""
     print("Running flake8")

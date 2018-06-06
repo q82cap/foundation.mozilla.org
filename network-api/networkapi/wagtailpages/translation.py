@@ -20,6 +20,7 @@ from .models import (
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 
+
 @register(ModularPage)
 class ModularPageTR(TranslationOptions):
     fields = (
@@ -27,19 +28,23 @@ class ModularPageTR(TranslationOptions):
         'body',
     )
 
+
 @register(MiniSiteNameSpace)
 class MiniSiteNameSpaceTR(TranslationOptions):
     fields = ()
+
 
 @register(CampaignPage)
 class CampaignPageTR(TranslationOptions):
     fields = (
     )
 
+
 @register(OpportunityPage)
 class OpportunityPageTR(TranslationOptions):
     fields = (
     )
+
 
 @register(CTA)
 class CTATR(TranslationOptions):
@@ -49,10 +54,12 @@ class CTATR(TranslationOptions):
         'description',
     )
 
+
 @register(Petition)
 class PetitionTR(TranslationOptions):
     fields = (
     )
+
 
 @register(PrimaryPage)
 class PrimaryPageTR(TranslationOptions):
@@ -60,6 +67,7 @@ class PrimaryPageTR(TranslationOptions):
         'header',
         'body',
     )
+
 
 @register(NewsPage)
 class NewsPageTR(TranslationOptions):
@@ -85,6 +93,7 @@ class PeoplePageTR(TranslationOptions):
 class StyleguideTR(TranslationOptions):
     fields = ()
 
+
 @register(Homepage)
 class HomepageTR(TranslationOptions):
     fields = (
@@ -93,6 +102,7 @@ class HomepageTR(TranslationOptions):
         'hero_button_text',
         'hero_button_url',
     )
+
 
 @register(RedirectingPage)
 class RedirectingPageTR(TranslationOptions):

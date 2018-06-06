@@ -66,7 +66,7 @@ urlpatterns = list(filter(None, [
 
     url(r'^cms/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
-    #url(r'', include(wagtail_urls)),
+    # url(r'', include(wagtail_urls)),
 
     # Mezzanine left-overs
 

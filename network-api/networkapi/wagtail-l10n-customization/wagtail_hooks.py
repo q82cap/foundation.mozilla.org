@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.utils.html import format_html, format_html_join
+from django.utils.html import format_html_join
 from wagtail.core import hooks
 
 
@@ -11,15 +11,19 @@ def editor_js():
     click to show/hide all those fields.
     """
 
-    js_files = ['js/language_toggles.js',]
+    js_files = ['js/language_toggles.js', ]
 
-    js_includes = format_html_join('\n', '<script src="{0}{1}"></script>',
+    js_includes = format_html_join(
+        '\n',
+        '<script src="{0}{1}"></script>',
         ((settings.STATIC_URL, filename) for filename in js_files)
     )
 
-    css_files = ['css/language_toggles.css',]
+    css_files = ['css/language_toggles.css', ]
 
-    css_includes = format_html_join('\n', '<link rel="stylesheet" href="{0}{1}">',
+    css_includes = format_html_join(
+        '\n',
+        '<link rel="stylesheet" href="{0}{1}">',
         ((settings.STATIC_URL, filename) for filename in css_files)
     )
 

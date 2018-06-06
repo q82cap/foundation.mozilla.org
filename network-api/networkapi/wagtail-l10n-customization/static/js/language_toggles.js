@@ -24,6 +24,12 @@ if (topLevel.attr(`class`) && topLevel.attr(`class`).indexOf(`search`) > -1) {
  * will always stay visible.
  */
 function buildSets() {
+  // Note: we do NOT rely on the "langs" variable
+  // that wagtail-modeltranslations sets up, as
+  // we want to know whether "this page",
+  // specifically, has any localised fields that
+  // require set building, rather than which URL
+  // language prefixes are supported, in general.
   var localisedElements = {};
 
   $(`li.object`, topLevel).each( (index, element) => {
@@ -48,30 +54,30 @@ function buildSets() {
  * Build a locale picker bar, with buttons that toggle
  * visibility for each locale's fields.
  */
-function buildLocalPicker() {
+function buildLocaleToggler() {
   var bar = $(`<div class="locale-picker"><h2>View/edit fields for:</h2></div>`);
   var ul = $(`<ul class="locales"></ul>`);
   bar.append(ul);
 
-  var buttons = {};
+  var toggles = {};
   locales.forEach( locale => {
     var li = $(`<li class="locale"><button class="locale-toggle">${locale}</button></li>`);
     ul.append(li);
 
-    $(`button.locale-toggle`, li).each( (index, button) => {
-      button.addEventListener(`click`, e => {
+    $(`button.locale-toggle`, li).each( (index, toggle) => {
+      toggle.addEventListener(`click`, e => {
         e.preventDefault();
-        button.classList.toggle(`active`);
+        toggle.classList.toggle(`active`);
         toggleLocale(locale);
       })
 
-      buttons[locale] = button;
+      toggles[locale] = toggle;
     });
   });
 
   bar.prependTo(topLevel);
 
-  return buttons;
+  return toggles;
 }
 
 /**
@@ -92,16 +98,19 @@ function toggleLocale(locale, state) {
   });
 }
 
-var default_locale = `en`,
-    localisedElements = buildSets(),
-    locales = Object.keys(localisedElements);
+var default_locale = `en`;
+var localisedElements = buildSets();
+var locales = Object.keys(localisedElements).sort();
 
 // If there are no locale sets, then there is
 // no locale field picker to build, either.
 if (locales.length === 0) return;
 
-var loccalePicker = buildLocalPicker();
-loccalePicker[default_locale].click();
+// If there are locale sets, make sure to
+// enable at least the default locale after
+// building and hiding all locale sets.
+var localeToggler = buildLocaleToggler();
+localeToggler[default_locale].click();
 
 ///////////////
 });

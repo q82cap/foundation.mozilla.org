@@ -128,6 +128,7 @@ INSTALLED_APPS = list(filter(None, [
     'mezzanine.forms',
 
     'networkapi.wagtailcustomization',
+    'networkapi.wagtail-l10n-customization',
 
     'wagtailmetadata',
 

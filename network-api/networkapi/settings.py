@@ -256,17 +256,10 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'mezzanine.conf.context_processors.settings',
-                'mezzanine.pages.context_processors.page',
             ])),
-            'builtins': [
-                'mezzanine.template.loader_tags',
-            ],
             'libraries': {
-                'adminsortable_tags': 'networkapi.utility.templatetags'
-                                      '.adminsortable_tags_custom',
-                'settings_value': 'networkapi.utility.templatetags'
-                                  '.settings_value',
+                'adminsortable_tags': 'networkapi.utility.templatetags.adminsortable_tags_custom',
+                'settings_value': 'networkapi.utility.templatetags.settings_value',
                 'mini_site_tags': 'networkapi.wagtailpages.templatetags.mini_site_tags',
                 'homepage_tags': 'networkapi.wagtailpages.templatetags.homepage_tags',
                 'primary_page_tags': 'networkapi.wagtailpages.templatetags.primary_page_tags',
@@ -322,43 +315,13 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Location of root django.contrib.admin URL, use {% url 'admin:index' %}
-ADMIN_URL = r'^admin/'
-
-# Remove these classes from the admin interface
-ADMIN_REMOVAL = [
-    'mezzanine.pages.models.RichTextPage',
-    'mezzanine.pages.models.Link',
-    'mezzanine.forms.models.Form',
-    'mezzanine.generic.models.ThreadedComment',
-]
-
-ADMIN_MENU_ORDER = (
-    ('Content', ('pages.Page',
-                 ('Media Library', 'media-library'))),
-    ('Data', (
-        'people.Person',
-        'news.News',
-        'people.InternetHealthIssue',
-        'highlights.Highlight',
-        'milestones.Milestone'
-        )),
-    ('Components', ('landingpage.Signup', 'campaign.Petition')),
-    ('Site', ('sites.Site', 'redirects.Redirect', 'conf.Setting')),
-    ('Users', ('auth.User', 'auth.Group')),
-)
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 

@@ -163,7 +163,7 @@ INSTALLED_APPS = list(filter(None, [
 
     # the network site
     'networkapi',
-    'networkapi.homepage',
+    'networkapi.homepage', # cannot remove until people.migration24 stops pointing to this app
     'networkapi.people',
     'networkapi.news',
     'networkapi.fellows',

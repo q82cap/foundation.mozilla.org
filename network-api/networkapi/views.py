@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.views import View
-from mezzanine.conf import settings
+from django.conf import settings
 
 
 class EnvVariablesView(View):

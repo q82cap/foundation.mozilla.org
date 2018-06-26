@@ -122,6 +122,8 @@ INSTALLED_APPS = list(filter(None, [
     'django.contrib.staticfiles',
     'django.contrib.redirects',
 
+    'django_comments',  # became necessary due to removing mezzanine's set_dynamic_settings
+
     'debug_toolbar'
     if DEBUG and not DISABLE_DEBUG_TOOLBAR else None,
 
@@ -130,7 +132,6 @@ INSTALLED_APPS = list(filter(None, [
     'mezzanine.core',
     'mezzanine.generic',
     'mezzanine.pages',
-    'mezzanine.forms',
 
     'networkapi.wagtailcustomization',
 
@@ -163,13 +164,13 @@ INSTALLED_APPS = list(filter(None, [
 
     # the network site
     'networkapi',
-    'networkapi.homepage', # cannot remove until people.migration24 stops pointing to this app
-    'networkapi.people',
+    'networkapi.homepage',
+    'networkapi.people',  # relies on networkapi.homepage
     'networkapi.news',
     'networkapi.fellows',
     'networkapi.utility',
 
-    'networkapi.campaign',
+    'networkapi.campaign',  # relies on mezzanine.pages
     'networkapi.highlights',
     'networkapi.milestones',
 
@@ -467,13 +468,6 @@ FRONTEND = {
     'SHOW_TAKEOVER': env('SHOW_TAKEOVER'),
 }
 
-try:
-    from mezzanine.utils.conf import set_dynamic_settings
-except ImportError:
-    pass
-else:
-    set_dynamic_settings(globals())
-
 
 # DEBUG toolbar
 if DEBUG and not DISABLE_DEBUG_TOOLBAR:
@@ -485,3 +479,6 @@ if DEBUG and not DISABLE_DEBUG_TOOLBAR:
     DEBUG_TOOLBAR_CONFIG = {
         "SHOW_TOOLBAR_CALLBACK": show_toolbar,
     }
+
+# REQUIRED FOR AS LONG AS MEZZANINE HAS NOT BEEN FULLY PURGED
+TESTING = False

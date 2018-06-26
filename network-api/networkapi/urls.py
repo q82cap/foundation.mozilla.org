@@ -64,16 +64,6 @@ urlpatterns = list(filter(None, [
     url(r'^cms/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'', include(wagtail_urls)),
-
-    # Mezzanine left-overs
-
-    url(
-        # An explicit entry for "a route called 'home'", which we cannot
-        # remove until we fully extricate Mezzanine from our codebase:
-        r'^this/cannot/be/reached/because/of/the/patterns/above$',
-        RedirectView.as_view(url='/its/purely/to/appease/mezzanine'),
-        name='home'
-    ),
 ]))
 
 

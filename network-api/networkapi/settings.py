@@ -168,7 +168,7 @@ INSTALLED_APPS = list(filter(None, [
     'networkapi.news',
     'networkapi.fellows',
     'networkapi.utility',
-    'networkapi.landingpage',
+
     'networkapi.campaign',
     'networkapi.highlights',
     'networkapi.milestones',

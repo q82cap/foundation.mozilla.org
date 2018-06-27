@@ -37,11 +37,9 @@ let main = {
         networkSiteURL = `https://${env.HEROKU_APP_NAME}.herokuapp.com`;
       }
 
-      this.fetchHomeDataIfNeeded((data) => {
-        this.injectReactComponents(data);
-        this.bindGlobalHandlers();
-        this.decorateExternalLinks();
-      });
+      this.injectReactComponents();
+      this.bindGlobalHandlers();
+      this.decorateExternalLinks();
     });
   },
 
@@ -192,7 +190,7 @@ let main = {
   },
 
   // Embed various React components based on the existence of containers within the current page
-  injectReactComponents(data) {
+  injectReactComponents() {
     if (SHOW_MEMBER_NOTICE && document.getElementById(`member-notice`)) {
       ReactDOM.render(<MemberNotice />, document.getElementById(`member-notice`));
     }
@@ -257,25 +255,6 @@ let main = {
       });
 
       ReactDOM.render(<MultipageNav links={links} />, document.querySelector(`#multipage-nav-mobile .container .row .col-12`));
-    }
-
-    // Homepage
-
-    if (data) {
-      // Leaders
-      if (document.querySelector(`#featured-people-box`)) {
-        ReactDOM.render(<Leaders data={data.leaders} />, document.querySelector(`#featured-people-box`));
-      }
-
-      // Home News
-      if (document.querySelector(`#home-news`)) {
-        ReactDOM.render(<HomeNews data={data.news} />, document.querySelector(`#home-news`));
-      }
-
-      // Highlights
-      if (document.querySelector(`#home-highlights`)) {
-        ReactDOM.render(<Highlights data={data.highlights} />, document.querySelector(`#home-highlights`));
-      }
     }
 
     // News

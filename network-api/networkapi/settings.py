@@ -121,6 +121,7 @@ INSTALLED_APPS = list(filter(None, [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.redirects',
+    'django.contrib.sitemaps',
 
     'django_comments',  # became necessary due to removing mezzanine's set_dynamic_settings
 
